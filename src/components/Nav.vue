@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import NavLink from "./NavLink.vue";
+import NavDropdownLink from "./NavDropdownLink.vue";
 
 const dropdownOpen = ref(false);
 
@@ -49,10 +49,10 @@ onBeforeUnmount(() => {
           </div>
           <ul aria-labelledby="navDropdownDefaultButton">
             <li>
-              <NavLink>Dashboard</NavLink>
+              <NavDropdownLink>Dashboard</NavDropdownLink>
             </li>
             <li>
-              <NavLink>Account Settings</NavLink>
+              <NavDropdownLink>Account Settings</NavDropdownLink>
             </li>
           </ul>
           <div class="py-2">
