@@ -63,7 +63,7 @@ onBeforeUnmount(() => {
           </DrawerMenuItemLink>
           <DrawerMenuItemLink>
             <i class="bi bi-123"></i>
-            <span class="ms-3">Plate Request</span>
+            <span class="ms-3">Plate Requests</span>
           </DrawerMenuItemLink>
           <DrawerMenuItemLink>
             <i class="bi bi-journals"></i>
