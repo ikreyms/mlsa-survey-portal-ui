@@ -19,7 +19,11 @@ watch(route, () => {
 </script>
 
 <template>
-  <RouterLink :to="to" :class="{ active: currentUrl.startsWith(to) }">
+  <RouterLink
+    :to="to"
+    :class="{ active: currentUrl.startsWith(to) }"
+    :aria-current="currentUrl.startsWith(to) ? 'page' : undefined"
+  >
     <slot />
   </RouterLink>
 </template>

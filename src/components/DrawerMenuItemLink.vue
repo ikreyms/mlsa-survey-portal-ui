@@ -7,13 +7,17 @@ defineProps({
     default: "#",
   },
 });
+
+const emit = defineEmits(["close-drawer"]);
+
+const handleClick = () => {
+  emit("close-drawer");
+};
 </script>
 
 <template>
-  <RouterLink :to="to">
+  <RouterLink :to="to" @click="handleClick">
     <slot />
-    <!-- <i class="bi bi-speedometer2"></i>
-    <span class="ms-3">Dashboard</span> -->
   </RouterLink>
 </template>
 

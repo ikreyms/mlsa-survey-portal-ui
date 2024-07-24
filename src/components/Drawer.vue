@@ -57,15 +57,15 @@ onBeforeUnmount(() => {
     <div class="py-4 overflow-y-auto">
       <ul class="space-y-2 font-medium">
         <li class="w-full">
-          <DrawerMenuItemLink>
+          <DrawerMenuItemLink @close-drawer="closeDrawer" to="/dashboard">
             <i class="bi bi-speedometer2"></i>
             <span class="ms-3">Dashboard</span>
           </DrawerMenuItemLink>
-          <DrawerMenuItemLink>
+          <DrawerMenuItemLink @close-drawer="closeDrawer" to="/plate-requests">
             <i class="bi bi-123"></i>
             <span class="ms-3">Plate Requests</span>
           </DrawerMenuItemLink>
-          <DrawerMenuItemLink>
+          <DrawerMenuItemLink @close-drawer="closeDrawer" to="/csr-submissions">
             <i class="bi bi-journals"></i>
             <span class="ms-3">CSR Submissions</span>
           </DrawerMenuItemLink>
