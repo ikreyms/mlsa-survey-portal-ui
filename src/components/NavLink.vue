@@ -30,14 +30,14 @@ watch(route, () => {
 
 <style scoped>
 a {
-  @apply font-medium text-black-800 border-b-2 border-b-transparent transition-colors duration-300;
+  @apply font-medium text-black-800 dark:text-white-700 border-b-2 border-b-transparent transition-colors duration-300;
 }
 
 a:hover {
-  @apply bg-transparent border-primary-light;
+  @apply bg-transparent border-primary-light dark:border-primary;
 }
 
 .active {
-  @apply border-primary;
+  @apply border-primary dark:border-primary-light;
 }
 </style>

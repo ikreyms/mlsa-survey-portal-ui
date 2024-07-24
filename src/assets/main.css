@@ -4,8 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply dark:bg-gray-800;
+}
+
 h1 {
-  @apply text-4xl font-extrabold text-black dark:text-white-700;
+  @apply text-4xl font-extrabold text-black-900 dark:text-white;
 }
 
 /* This an be used to add a secondary text inside the main heading component. */
@@ -14,7 +18,7 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl font-bold text-black-900 dark:text-white-800;
+  @apply text-3xl font-bold text-black-900 dark:text-white;
 }
 
 h3 {
@@ -31,4 +35,8 @@ h5 {
 
 h6 {
   @apply text-lg font-bold text-black-700 dark:text-white-950;
+}
+
+label {
+  @apply block text-sm font-medium text-gray-900 dark:text-white-800;
 }

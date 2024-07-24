@@ -78,7 +78,7 @@ header {
 }
 
 #dropdown {
-  @apply absolute top-full shadow-lg right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg w-44 dark:bg-gray-700;
+  @apply absolute top-[110%] border dark:border-gray-500 shadow-lg right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg w-44 dark:bg-gray-700;
 }
 
 #user-info {

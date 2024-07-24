@@ -28,6 +28,7 @@ defineProps({
   },
 });
 </script>
+
 <template>
   <component
     :is="link ? 'RouterLink' : 'button'"
@@ -53,7 +54,10 @@ defineProps({
 
 <style scoped>
 .btn {
-  @apply font-medium text-center inline-flex items-center focus:ring-2 focus:ring-offset-1 focus:outline-none border-2 border-transparent active:scale-95 transition-all duration-150;
+  @apply font-medium text-center inline-flex items-center;
+  @apply focus:ring-2 focus:ring-offset-1 focus:outline-none;
+  @apply border-2 border-transparent;
+  @apply active:scale-95 transition-all duration-150;
 }
 
 .xs {
@@ -77,23 +81,30 @@ defineProps({
 }
 
 .primary {
-  @apply text-white 
-  bg-primary border-primary
+  @apply text-white bg-primary border-primary
   hover:bg-primary-dark hover:border-primary-dark
-  focus:ring-primary-light dark:bg-primary-light dark:border-primary-light dark:hover:bg-primary dark:hover:border-primary dark:focus:ring-primary-dark;
+  focus:ring-primary-light
+  dark:bg-primary dark:border-primary
+  dark:hover:bg-primary-dark dark:hover:border-primary-dark
+  dark:focus:ring-primary-light;
 }
 
 .secondary {
-  @apply text-primary
+  @apply text-primary dark:text-primary-light
   bg-transparent border-primary
   hover:bg-primary hover:text-white
-  focus:ring-primary-light dark:bg-transparent dark:hover:bg-primary dark:focus:ring-primary-dark;
+  focus:ring-primary-light
+  dark:bg-transparent dark:border-primary-light
+  dark:hover:bg-primary dark:hover:border-primary
+  dark:hover:text-white dark:focus:ring-primary-light;
 }
 
 .danger {
-  @apply text-red-700
+  @apply text-red-700 dark:text-red-500
   bg-transparent border-red-700
   hover:bg-red-700 hover:text-white
-  focus:ring-red-300 dark:bg-transparent dark:hover:bg-red-700 dark:focus:ring-red-300;
+  focus:ring-red-300
+  dark:bg-transparent dark:border-red-500
+  dark:hover:bg-red-500 dark:focus:ring-red-300;
 }
 </style>

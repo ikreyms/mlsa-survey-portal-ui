@@ -23,7 +23,9 @@ const closeDrawer = () => {
           <li><NavLink to="/csr-submissions">CSR Submissions</NavLink></li>
         </ul>
         <button id="navDrawerTriggerButton" @click="toggleDrawer">
-          <i class="bi bi-list text-2xl text-primary"></i>
+          <i
+            class="bi bi-list text-2xl text-primary dark:text-primary-light"
+          ></i>
         </button>
       </nav>
     </div>
@@ -37,7 +39,7 @@ const closeDrawer = () => {
 
 <style scoped>
 #wrapper {
-  @apply bg-white shadow-md relative;
+  @apply bg-white dark:bg-gray-700 shadow-md relative;
 }
 
 h5 {
