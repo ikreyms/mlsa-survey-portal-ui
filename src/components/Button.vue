@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from "vue-router";
+
 defineProps({
   type: {
     type: String,
@@ -16,10 +18,20 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  link: {
+    type: Boolean,
+    default: false,
+  },
+  to: {
+    type: String,
+    default: "#",
+  },
 });
 </script>
 <template>
-  <button
+  <component
+    :is="link ? 'RouterLink' : 'button'"
+    :to="to"
     :type="type"
     class="btn"
     :class="{
@@ -36,7 +48,7 @@ defineProps({
     }"
   >
     <slot />
-  </button>
+  </component>
 </template>
 
 <style scoped>
