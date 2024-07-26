@@ -32,7 +32,7 @@ onBeforeUnmount(() => {
 
 <template>
   <header>
-    <div class="_container flex items-center justify-between">
+    <div class="_container flex items-center justify-between px-4">
       <RouterLink id="logo" to="/">MLSA Survey Portal</RouterLink>
       <div class="relative">
         <button
@@ -70,7 +70,7 @@ header {
 }
 
 #logo {
-  @apply text-white-700 font-bold text-lg hover:bg-transparent;
+  @apply px-0 text-white-700 font-bold text-lg hover:bg-transparent;
 }
 
 #navDropdownDefaultButton {

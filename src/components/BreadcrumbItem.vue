@@ -26,7 +26,7 @@ defineProps({
     </RouterLink>
   </li>
   <li v-if="isLast" aria-current="page">
-    <div class="flex items-center gap-x-3">
+    <div class="flex items-center">
       <i class="bi bi-caret-right-fill text-gray-400"></i>
       <span
         class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400"
@@ -51,5 +51,6 @@ defineProps({
 <style scoped>
 a {
   border-radius: 0.3rem;
+  @apply hover:bg-transparent hover:underline underline-offset-4 px-0;
 }
 </style>

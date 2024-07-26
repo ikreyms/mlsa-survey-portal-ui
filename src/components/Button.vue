@@ -61,7 +61,7 @@ defineProps({
 }
 
 .xs {
-  @apply px-3 py-2 text-xs gap-x-1;
+  @apply px-[6px] py-1 text-xs gap-x-1;
 }
 
 .sm {

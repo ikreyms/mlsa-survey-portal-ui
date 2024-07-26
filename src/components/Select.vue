@@ -5,6 +5,7 @@ import NavDropdownLink from "./NavDropdownLink.vue";
 const dropdownOpen = ref(false);
 
 defineProps({
+  size: String,
   options: Array,
   defaultOption: String,
 });
@@ -37,7 +38,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="relative">
     <button
-      size="sm"
+      :size="size"
       id="selectDropdownDefaultButton"
       data-dropdown-toggle="dropdown"
       class=""
@@ -59,7 +60,8 @@ onBeforeUnmount(() => {
 
 <style scoped>
 #selectDropdownDefaultButton {
-  @apply text-sm font-normal rounded-lg px-3 py-2.5 inline-flex items-center gap-x-2;
+  @apply inline-flex items-center gap-x-2;
+  @apply text-sm font-normal rounded-lg px-3 py-1;
   @apply text-black-800 dark:text-white-800;
   @apply bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600;
   @apply border-2 border-gray-300 dark:border-gray-500 focus:outline-none focus:border-primary dark:focus:border-primary-light;

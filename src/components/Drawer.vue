@@ -1,28 +1,16 @@
 <script setup>
-import { computed, onMounted, onBeforeUnmount } from "vue";
+import { onMounted, onBeforeUnmount } from "vue";
 import DrawerMenuItemLink from "./DrawerMenuItemLink.vue";
+import { useDrawerStore } from "@/store";
 
-const props = defineProps({
-  drawerToggle: {
-    type: Boolean,
-    default: false,
-  },
-});
-
-const emit = defineEmits(["drawer-open-on-sec-nav"]);
-
-const drawerOpen = computed(() => props.drawerToggle);
-
-const closeDrawer = () => {
-  emit("drawer-close-on-sec-nav");
-};
+const drawerStore = useDrawerStore();
 
 const handleClickOutside = (event) => {
   if (
     !event.target.closest("#drawer-navigation") &&
     !event.target.closest("#navDrawerTriggerButton")
   ) {
-    closeDrawer();
+    drawerStore.closeDrawer();
   }
 };
 
@@ -36,16 +24,16 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div id="drawer-overlay" :class="{ hidden: !drawerOpen }"></div>
+  <div id="drawer-overlay" :class="{ hidden: !drawerStore.drawerOpen }"></div>
   <div
     id="drawer-navigation"
     tabindex="-1"
     aria-labelledby="drawer-navigation-label"
-    :class="{ '-translate-x-full': !drawerOpen }"
+    :class="{ '-translate-x-full': !drawerStore.drawerOpen }"
   >
     <h5 id="drawer-navigation-label">Menu</h5>
     <button
-      @click="closeDrawer"
+      @click="drawerStore.closeDrawer"
       type="button"
       id="close-drawer-button"
       data-drawer-hide="drawer-navigation"
@@ -57,15 +45,24 @@ onBeforeUnmount(() => {
     <div class="py-4 overflow-y-auto">
       <ul class="space-y-2 font-medium">
         <li class="w-full">
-          <DrawerMenuItemLink @close-drawer="closeDrawer" to="/dashboard">
+          <DrawerMenuItemLink
+            @close-drawer="drawerStore.closeDrawer"
+            to="/dashboard"
+          >
             <i class="bi bi-speedometer2"></i>
             <span class="ms-3">Dashboard</span>
           </DrawerMenuItemLink>
-          <DrawerMenuItemLink @close-drawer="closeDrawer" to="/plate-requests">
+          <DrawerMenuItemLink
+            @close-drawer="drawerStore.closeDrawer"
+            to="/plate-requests"
+          >
             <i class="bi bi-123"></i>
             <span class="ms-3">Plate Requests</span>
           </DrawerMenuItemLink>
-          <DrawerMenuItemLink @close-drawer="closeDrawer" to="/csr-submissions">
+          <DrawerMenuItemLink
+            @close-drawer="drawerStore.closeDrawer"
+            to="/csr-submissions"
+          >
             <i class="bi bi-journals"></i>
             <span class="ms-3">CSR Submissions</span>
           </DrawerMenuItemLink>

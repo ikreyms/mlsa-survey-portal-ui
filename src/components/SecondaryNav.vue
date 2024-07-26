@@ -2,15 +2,17 @@
 import { ref } from "vue";
 import NavLink from "./NavLink.vue";
 import Drawer from "./Drawer.vue";
+import { useDrawerStore } from "@/store";
 
-const drawerOpen = ref(false);
-const toggleDrawer = () => {
-  drawerOpen.value = !drawerOpen.value;
-};
+const drawerStore = useDrawerStore();
+// const drawerOpen = ref(false);
+// const toggleDrawer = () => {
+//   drawerOpen.value = !drawerOpen.value;
+// };
 
-const closeDrawer = () => {
-  drawerOpen.value = false;
-};
+// const closeDrawer = () => {
+//   drawerOpen.value = false;
+// };
 </script>
 
 <template>
@@ -22,18 +24,14 @@ const closeDrawer = () => {
           <li><NavLink to="/plate-requests">Plate Requests</NavLink></li>
           <li><NavLink to="/csr-submissions">CSR Submissions</NavLink></li>
         </ul>
-        <button id="navDrawerTriggerButton" @click="toggleDrawer">
+        <button id="navDrawerTriggerButton" @click="drawerStore.toggleDrawer">
           <i
             class="bi bi-list text-2xl text-primary dark:text-primary-light"
           ></i>
         </button>
       </nav>
     </div>
-    <Drawer
-      :drawerToggle="drawerOpen"
-      @drawer-toggle-on-sec-nav="toggleDrawer"
-      @drawer-close-on-sec-nav="closeDrawer"
-    />
+    <Drawer />
   </div>
 </template>
 
