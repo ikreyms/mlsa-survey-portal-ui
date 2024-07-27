@@ -13,6 +13,16 @@ const toggleFilter = () => {
   filterOn.value = !filterOn.value;
 };
 
+const plateRequestsStore = usePlateRequestsStore();
+
+const handleSelectAllCheckbox = () => {
+  if (plateRequestsStore.isAllSelected) {
+    plateRequestsStore.clearSelection();
+  } else {
+    plateRequestsStore.selectAll();
+  }
+};
+
 const statusArray = ["Pending Approval", "Approved", "Rejected"];
 
 const plateRequests = [
@@ -65,12 +75,17 @@ const plateRequests = [
     <Breadcrumbs
       :items="[{ label: 'Plate Requests', to: '/plate-requests' }]"
     />
+    <span v-for="id in plateRequestsStore.ids"> {{ id }}</span>
     <div id="panel">
       <div
-        class="bg-gray-50 dark:bg-gray-700 p-3 flex items-center justify-between gap-x-4 flex-wrap gap-y-3"
+        class="bg-gray-100 dark:bg-gray-700 p-3 flex items-center justify-between gap-x-4 flex-wrap gap-y-3"
       >
         <div class="flex items-center gap-x-4">
-          <Checkbox :checked="isSelectedAll" id="selectAllCheckbox" />
+          <Checkbox
+            :checked="plateRequestsStore.isAllSelected"
+            @change="handleSelectAllCheckbox"
+            id="selectAllCheckbox"
+          />
           <div class="inline-flex items-center gap-x-1">
             <Button size="xs" color="secondary" pill title="Add">
               <i class="bi-plus-lg text-xs"></i>

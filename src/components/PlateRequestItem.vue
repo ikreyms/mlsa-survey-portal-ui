@@ -1,15 +1,39 @@
 <script setup>
+import { ref } from "vue";
 import Checkbox from "./Checkbox.vue";
 import Indicator from "./Indicator.vue";
+import { usePlateRequestsStore } from "@/store";
 
 const props = defineProps({
   plateRequest: Object,
 });
+
+const plateRequestsStore = usePlateRequestsStore();
+
+const isCheckboxChecked = ref(false);
+
+const handleCheckboxChange = (id) => {
+  isCheckboxChecked.value = !isCheckboxChecked.value;
+  // if (!isCheckboxChecked) {
+  //   if (plateRequestsStore.ids.includes(id)) {
+  //     console.log("id is there");
+  //     plateRequestsStore.removeSelectedId(id);
+  //   }
+  //   plateRequestsStore.removeSelectedId(id);
+  // } else {
+  //   plateRequestsStore.addSelectedId(id);
+  // }
+  console.log(id);
+};
 </script>
 
 <template>
   <div class="item">
-    <Checkbox :id="String(plateRequest.id)" />
+    <Checkbox
+      @change="handleCheckboxChange(plateRequest.id)"
+      :checked="isCheckboxChecked"
+      :id="String(plateRequest.id)"
+    />
     <p class="flex-1 font-bold text-primary dark:text-primary-light">
       {{ plateRequest.island }}
       <Indicator

@@ -17,6 +17,7 @@ export const useDrawerStore = defineStore("drawer", {
 export const usePlateRequestsStore = defineStore("plateRequests", {
   state: () => ({
     ids: [],
+    isAllSelected: false,
   }),
   actions: {
     addSelectedId(id) {
@@ -30,8 +31,12 @@ export const usePlateRequestsStore = defineStore("plateRequests", {
         this.ids.splice(index, 1);
       }
     },
-    clearSelectedIds() {
+    clearSelection() {
       this.ids = [];
+      this.isAllSelected = false;
+    },
+    selectAll() {
+      this.isAllSelected = true;
     },
   },
 });
