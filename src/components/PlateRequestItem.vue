@@ -6,32 +6,21 @@ import { usePlateRequestsStore } from "@/store";
 
 const props = defineProps({
   plateRequest: Object,
+  selected: Boolean,
 });
 
 const plateRequestsStore = usePlateRequestsStore();
 
-const isCheckboxChecked = ref(false);
-
-const handleCheckboxChange = (id) => {
-  isCheckboxChecked.value = !isCheckboxChecked.value;
-  // if (!isCheckboxChecked) {
-  //   if (plateRequestsStore.ids.includes(id)) {
-  //     console.log("id is there");
-  //     plateRequestsStore.removeSelectedId(id);
-  //   }
-  //   plateRequestsStore.removeSelectedId(id);
-  // } else {
-  //   plateRequestsStore.addSelectedId(id);
-  // }
-  console.log(id);
+const toggleSelection = (value) => {
+  plateRequestsStore.toggleSelect(props.plateRequest.id, value);
 };
 </script>
 
 <template>
   <div class="item">
     <Checkbox
-      @change="handleCheckboxChange(plateRequest.id)"
-      :checked="isCheckboxChecked"
+      :checked="plateRequest.selected"
+      @update:checked="toggleSelection"
       :id="String(plateRequest.id)"
     />
     <p class="flex-1 font-bold text-primary dark:text-primary-light">

@@ -16,27 +16,45 @@ export const useDrawerStore = defineStore("drawer", {
 
 export const usePlateRequestsStore = defineStore("plateRequests", {
   state: () => ({
-    ids: [],
-    isAllSelected: false,
+    plateRequests: [],
+    selectedIds: [],
   }),
   actions: {
-    addSelectedId(id) {
-      if (!this.ids.includes(id)) {
-        this.ids.push(id);
+    setPlateRequests(plateRequests) {
+      this.plateRequests = plateRequests;
+      this.selectedIds = plateRequests
+        .filter((request) => request.selected)
+        .map((request) => request.id);
+    },
+    toggleSelectAll(value) {
+      this.plateRequests.forEach((request) => {
+        request.selected = value;
+      });
+      this.selectedIds = value
+        ? this.plateRequests.map((request) => request.id)
+        : [];
+    },
+    toggleSelect(id, value) {
+      const plateRequest = this.plateRequests.find(
+        (request) => request.id === id
+      );
+      if (plateRequest) {
+        plateRequest.selected = value;
+        if (value) {
+          if (!this.selectedIds.includes(id)) {
+            this.selectedIds.push(id);
+          }
+        } else {
+          this.selectedIds = this.selectedIds.filter(
+            (selectedId) => selectedId !== id
+          );
+        }
       }
     },
-    removeSelectedId(id) {
-      const index = this.ids.indexOf(id);
-      if (index > -1) {
-        this.ids.splice(index, 1);
-      }
-    },
-    clearSelection() {
-      this.ids = [];
-      this.isAllSelected = false;
-    },
-    selectAll() {
-      this.isAllSelected = true;
+  },
+  getters: {
+    allSelected(state) {
+      return state.plateRequests.every((request) => request.selected);
     },
   },
 });

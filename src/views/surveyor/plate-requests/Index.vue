@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
 import Button from "@/components/Button.vue";
 import Select from "@/components/Select.vue";
@@ -15,14 +15,9 @@ const toggleFilter = () => {
 
 const plateRequestsStore = usePlateRequestsStore();
 
-const handleSelectAllCheckbox = () => {
-  if (plateRequestsStore.isAllSelected) {
-    plateRequestsStore.clearSelection();
-  } else {
-    plateRequestsStore.selectAll();
-  }
+const toggleSelectAll = (value) => {
+  plateRequestsStore.toggleSelectAll(value);
 };
-
 const statusArray = ["Pending Approval", "Approved", "Rejected"];
 
 const plateRequests = [
@@ -33,6 +28,7 @@ const plateRequests = [
     surveyor: "Mohamed Saeed",
     submittedOn: "Jul 24",
     status: "Approved",
+    selected: false,
   },
   {
     id: 2,
@@ -41,6 +37,7 @@ const plateRequests = [
     surveyor: "Mohamed Ikram",
     submittedOn: "Aug 02",
     status: "Pending Approval",
+    selected: false,
   },
   {
     id: 3,
@@ -49,6 +46,7 @@ const plateRequests = [
     surveyor: "Mohamed Saeed",
     submittedOn: "Jul 24",
     status: "Approved",
+    selected: false,
   },
   {
     id: 4,
@@ -57,6 +55,7 @@ const plateRequests = [
     surveyor: "Mohamed Saeed",
     submittedOn: "Jul 24",
     status: "Rejected",
+    selected: false,
   },
   {
     id: 5,
@@ -65,8 +64,13 @@ const plateRequests = [
     surveyor: "Ahmed Nashid",
     submittedOn: "Jun 12",
     status: "Pending Approval",
+    selected: false,
   },
 ];
+
+onMounted(() => {
+  plateRequestsStore.setPlateRequests(plateRequests);
+});
 </script>
 
 <template>
@@ -75,15 +79,15 @@ const plateRequests = [
     <Breadcrumbs
       :items="[{ label: 'Plate Requests', to: '/plate-requests' }]"
     />
-    <span v-for="id in plateRequestsStore.ids"> {{ id }}</span>
+    <span v-for="id in plateRequestsStore.selectedIds"> {{ id }}</span>
     <div id="panel">
       <div
         class="bg-gray-100 dark:bg-gray-700 p-3 flex items-center justify-between gap-x-4 flex-wrap gap-y-3"
       >
         <div class="flex items-center gap-x-4">
           <Checkbox
-            :checked="plateRequestsStore.isAllSelected"
-            @change="handleSelectAllCheckbox"
+            :checked="plateRequestsStore.allSelected"
+            @update:checked="toggleSelectAll"
             id="selectAllCheckbox"
           />
           <div class="inline-flex items-center gap-x-1">
@@ -109,10 +113,10 @@ const plateRequests = [
 
       <div id="plate-requests-preview">
         <PlateRequestItem
-          v-for="plateRequest in plateRequests"
+          v-for="plateRequest in plateRequestsStore.plateRequests"
           :key="plateRequest.id"
           :plateRequest="plateRequest"
-          :selected="false"
+          :selected="plateRequestsStore.isAllSelected"
         />
       </div>
     </div>

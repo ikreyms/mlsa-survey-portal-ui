@@ -13,10 +13,16 @@ defineProps({
     type: String,
   },
   checked: {
-    required: false,
     type: Boolean,
+    default: false,
   },
 });
+
+const emit = defineEmits(["update:checked"]);
+
+const toggle = (event) => {
+  emit("update:checked", event.target.checked);
+};
 </script>
 
 <template>
@@ -28,6 +34,7 @@ defineProps({
         class="group-hover:cursor-pointer"
         :name="name"
         :checked="checked"
+        @change="toggle"
       />
     </div>
     <span v-if="label">{{ label }}</span>

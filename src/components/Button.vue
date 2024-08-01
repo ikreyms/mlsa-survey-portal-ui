@@ -55,7 +55,7 @@ defineProps({
 <style scoped>
 .btn {
   @apply font-medium text-center inline-flex items-center;
-  @apply focus:ring-2 focus:ring-offset-1 focus:outline-none;
+  @apply focus-visible:ring-2 focus:ring-offset-1 focus:outline-none;
   @apply border-2 border-transparent;
   @apply active:scale-95 transition-all duration-150;
 }
